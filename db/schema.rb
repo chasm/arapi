@@ -15,60 +15,52 @@ ActiveRecord::Schema.define(version: 20140617054141) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "uuid-ossp"
 
-  create_table "articles", force: true do |t|
+  create_table "articles", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "title"
     t.string   "body"
-    t.integer  "user_id"
+    t.uuid     "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "articles", ["user_id"], name: "index_articles_on_user_id", using: :btree
 
   create_table "articles_tags", id: false, force: true do |t|
     t.integer "article_id", null: false
     t.integer "tag_id",     null: false
   end
 
-  create_table "comments", force: true do |t|
+  create_table "comments", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "body"
-    t.integer  "article_id"
-    t.integer  "comment_id"
-    t.integer  "user_id"
+    t.uuid     "article_id"
+    t.uuid     "comment_id"
+    t.uuid     "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "comments", ["article_id"], name: "index_comments_on_article_id", using: :btree
-  add_index "comments", ["comment_id"], name: "index_comments_on_comment_id", using: :btree
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
-
-  create_table "duties", force: true do |t|
+  create_table "duties", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "jobs", force: true do |t|
-    t.integer  "duty_id"
-    t.integer  "user_id"
+  create_table "jobs", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
+    t.uuid     "duty_id"
+    t.uuid     "user_id"
     t.date     "starts_on"
     t.date     "ends_on"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "jobs", ["duty_id"], name: "index_jobs_on_duty_id", using: :btree
-  add_index "jobs", ["user_id"], name: "index_jobs_on_user_id", using: :btree
-
-  create_table "tags", force: true do |t|
+  create_table "tags", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "name"
     t.string   "email"
     t.datetime "created_at"
