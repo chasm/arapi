@@ -6,6 +6,9 @@ class CreateTags < ActiveRecord::Migration
       t.timestamps
     end
 
-    create_join_table :articles, :tags
+    create_table :articles_tags, id: false do |t|
+      t.uuid :article_id, index: true
+      t.uuid :tag_id, index: true
+    end
   end
 end

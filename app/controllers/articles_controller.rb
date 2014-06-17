@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
     articles = params[:ids] ?
       Article.where(id: params[:ids].split(",")).to_a :
       Article.all.to_a
-
+    
     render json: articles
   end
 

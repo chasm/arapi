@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(version: 20140617054141) do
   end
 
   create_table "articles_tags", id: false, force: true do |t|
-    t.integer "article_id", null: false
-    t.integer "tag_id",     null: false
+    t.uuid "article_id"
+    t.uuid "tag_id"
   end
 
   create_table "comments", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
