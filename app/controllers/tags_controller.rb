@@ -1,11 +1,9 @@
 class TagsController < ApplicationController
 
   def index
-    tags = params[:ids] ?
+    @tags = params[:ids] ?
       Tag.where(id: params[:ids].split(",")).to_a :
       Tag.all.to_a
-
-    render json: tags
   end
 
   def create_or_replace

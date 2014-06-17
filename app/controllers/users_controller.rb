@@ -1,11 +1,9 @@
 class UsersController < ApplicationController
 
   def index
-    users = params[:ids] ?
+    @users = params[:ids] ?
       User.where(id: params[:ids].split(",")).to_a :
       User.all.to_a
-
-    render json: users
   end
 
   def create_or_replace

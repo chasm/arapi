@@ -1,11 +1,9 @@
 class CommentsController < ApplicationController
 
   def index
-    comments = params[:ids] ?
+    @comments = params[:ids] ?
       Comment.where(id: params[:ids].split(",")).to_a :
       Comment.all.to_a
-
-    render json: comments
   end
 
   def create_or_replace
