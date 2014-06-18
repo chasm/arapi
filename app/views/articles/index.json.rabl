@@ -21,8 +21,8 @@ end
 
 node :links do
   {
-    users: users_url + "/{users.id}",
-    comments: comments_url + "/{comments.id}"
+    "articles.user" => users_url + "/{articles.user}",
+    "articles.comments" => comments_url + "/{articles.comments}"
   }
 end
 

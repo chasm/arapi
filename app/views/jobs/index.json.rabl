@@ -17,8 +17,8 @@ end
 
 node :links do
   {
-    users: users_url + "/{users.id}",
-    duties: duties_url + "/{duties.id}"
+    "jobs.user" => users_url + "/{jobs.user}",
+    "jobs.duty" => duties_url + "/{jobs.duty}"
   }
 end
 

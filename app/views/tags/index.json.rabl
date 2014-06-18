@@ -16,7 +16,7 @@ end
 
 node :links do
   {
-    articles: articles_url + "/{articles.id}"
+    "tags.articles" => articles_url + "/{tags.articles}"
   }
 end
 

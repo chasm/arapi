@@ -19,10 +19,10 @@ end
 
 node :links do
   {
-    articles: articles_url + "/{articles.id}",
-    comments: comments_url + "/{comments.id}",
-    jobs: jobs_url + "/{jobs.id}",
-    duties: duties_url + "/{duties.id}"
+    "users.articles" => articles_url + "/{users.articles}",
+    "users.comments" => comments_url + "/{users.comments}",
+    "users.jobs" => jobs_url + "/{users.jobs}",
+    "users.duties" => duties_url + "/{users.duties}"
   }
 end
 
