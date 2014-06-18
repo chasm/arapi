@@ -1,9 +1,9 @@
 class UuidsController < ApplicationController
 
   def create
-    num = params[:num] || "1"
-
-    render json: get_uuids(num.to_i)
+    @uuids = get_uuids(
+      (params[:num] || "1").to_i
+    )
   end
 
   private

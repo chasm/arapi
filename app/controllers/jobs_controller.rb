@@ -1,11 +1,9 @@
 class JobsController < ApplicationController
 
   def index
-    jobs = params[:ids] ?
+    @jobs = params[:ids] ?
       Job.where(id: params[:ids].split(",")).to_a :
       Job.all.to_a
-
-    render json: jobs
   end
 
   def create_or_replace

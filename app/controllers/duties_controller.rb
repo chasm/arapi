@@ -1,11 +1,9 @@
 class DutiesController < ApplicationController
 
   def index
-    duties = params[:ids] ?
+    @duties = params[:ids] ?
       Duty.where(id: params[:ids].split(",")).to_a :
       Duty.all.to_a
-
-    render json: duties
   end
 
   def create_or_replace
