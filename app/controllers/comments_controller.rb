@@ -1,10 +1,4 @@
-class CommentsController < ApplicationController
-
-  def index
-    @comments = params[:ids] ?
-      Comment.where(id: params[:ids].split(",")).to_a :
-      Comment.all.to_a
-  end
+class CommentsController < RestController
 
   def create_or_replace
     if comment = Comment.find_by( id: params[:id] )
@@ -56,7 +50,11 @@ class CommentsController < ApplicationController
 
   protected
 
-  def comment_params
+  def get_includes
+    [ :comments, :user, :article ]
+  end
+
+  def object_params
     params.require(:comment).permit( :title, :body )
   end
 end

@@ -5,6 +5,8 @@ Arapi::Application.routes.draw do
     get 'uuids'      => 'uuids#create', as: 'uuid'
     get 'uuids/:num' => 'uuids#create', as: 'uuids'
 
+    get    'rest'     => 'rest#index', as: 'rest'
+
     scope :articles do
       get    ''     => 'articles#index', as: 'articles'
       get    ':ids' => 'articles#index', as: 'article'

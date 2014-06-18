@@ -1,6 +1,6 @@
 object false
 
-child @comments do
+child @objects do
   attributes :id, :body
 
   node :links do |comment|
