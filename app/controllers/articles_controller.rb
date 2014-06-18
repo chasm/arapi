@@ -14,5 +14,6 @@ class ArticlesController < RestController
 
   def object_params
     params.require(:article).permit( :title, :body )
+      .merge(:user_id => User.first.id) # THIS IS CHEATING!!!
   end
 end

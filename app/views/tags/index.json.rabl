@@ -1,7 +1,7 @@
 object false
 
 child @objects do
-  attributes :id, :title, :body
+  attributes :id, :name
 
   node :links do |tag|
     {

@@ -1,4 +1,5 @@
 class RestController < ApplicationController
+  before_action :get_object, only: [ :update, :destroy ]
 
   def index
     qry = get_class.includes(get_includes)
@@ -13,56 +14,58 @@ class RestController < ApplicationController
   end
 
   def create_or_replace
-    if object = get_class.find_by( id: params[:id] )
-      replacement= get_class.new(
-          object_params.merge( id: params[:id] )
-        )
-      if replacement.valid?
-        object.destroy
-        replacement.save
-        head :no_content
-      else
-        head :unprocessable_entity
-      end
-    else
-      if object = get_class.create(
-          object_params.merge( id: params[:id] )
-        )
-        render json: object, status: :created
-      else
-        head :unprocessable_entity
-      end
-    end
+    new_object = get_class.new(
+      object_params.merge( id: params[:id] )
+    )
 
+    head :unprocessable_entity unless new_object.valid?
+
+    begin
+      if old_object = get_class.find_by( id: params[:id] )
+          old_object.destroy
+          new_object.save
+          head :no_content
+      else
+        new_object.save
+        @objects = [new_object]
+        render :index, status: :created
+      end
+    rescue
+      head :internal_server_error
+    end
   end
 
   def update
-    if object = get_class.find_by( id: params[:id] )
-      if object.update_attributes( object_params )
-        head :no_content
-      else
-        head :unprocessable_entity
-      end
+    if @object.update_attributes( object_params )
+      head :no_content
     else
-      head :not_found
+      head :unprocessable_entity
     end
   end
 
   def destroy
-    if object = get_class.find_by( id: params[:id] )
-      if object.destroy
-        head :no_content
-      else
-        head :internal_server_error
-      end
+    if @object.destroy
+      head :no_content
     else
-      head :not_found
+      head :internal_server_error
     end
   end
 
   protected
 
+  def get_object
+    head :not_found unless @object = get_class.find_by( id: params[:id] )
+  end
+
+  def get_includes
+    []
+  end
+
   def get_class
     params[:controller].singularize.camelize.constantize
+  end
+
+  def object_params
+    params.require(params[:controller].singularize.to_sym).permit(:id)
   end
 end
