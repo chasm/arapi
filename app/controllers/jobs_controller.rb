@@ -1,4 +1,5 @@
 class JobsController < ApplicationController
+  before_action :is_authenticated?
 
   def index
     @jobs = params[:ids] ?

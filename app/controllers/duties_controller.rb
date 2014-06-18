@@ -1,4 +1,5 @@
 class DutiesController < ApplicationController
+  before_action :is_authenticated?
 
   def index
     @duties = params[:ids] ?

@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  before_action :is_authenticated?
 
   def index
     @articles = params[:ids] ?

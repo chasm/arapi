@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :is_authenticated?
 
   def index
     @comments = params[:ids] ?

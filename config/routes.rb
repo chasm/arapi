@@ -52,5 +52,8 @@ Arapi::Application.routes.draw do
       patch  ':id'  => 'users#update'
       delete ':id'  => 'users#destroy'
     end
+
+    post   'token' => 'api#login'
+    delete 'token' => 'api#logout'
   end
 end

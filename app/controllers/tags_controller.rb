@@ -1,4 +1,5 @@
 class TagsController < ApplicationController
+  before_action :is_authenticated?
 
   def index
     @tags = params[:ids] ?
