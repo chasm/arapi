@@ -4,4 +4,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :jobs, dependent: :destroy
   has_many :duties, through: :jobs
+
+  validates :name, :email, presence: true
+  validates :email, uniqueness: true
 end

@@ -1,6 +1,6 @@
 object false
 
-child @objects do
+child @jobs => :jobs do
   attributes :id, :starts_on, :ends_on
 
   node :links do |job|

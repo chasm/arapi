@@ -1,6 +1,6 @@
 object false
 
-child @objects do
+child @tags => :tags do
   attributes :id, :name
 
   node :links do |tag|

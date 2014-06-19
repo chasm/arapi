@@ -2,7 +2,10 @@ class JobsController < RestController
 
   protected
 
-  def object_params
-    params.require(:job).permit( :title, :body )
+  def configure_controller
+    config[:display] = [ :starts_on, :ends_on ]
+    config[:require] = [ :id, :duty_id, :user_id ]
+    config[:permit]  = [ :starts_on, :ends_on ]
+    config[:include] = [ :user, :duty ]
   end
 end

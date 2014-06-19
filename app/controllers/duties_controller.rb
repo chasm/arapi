@@ -2,7 +2,10 @@ class DutiesController < RestController
 
   protected
 
-  def object_params
-    params.require(:duty).permit( :title, :body )
+  def configure_controller
+    config[:display] = [ :title ]
+    config[:require] = [ :id ]
+    config[:permit]  = [ :title ]
+    config[:include] = [ :users, :jobs ]
   end
 end

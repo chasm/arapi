@@ -1,6 +1,6 @@
 object false
 
-child @objects do
+child @users => :users do
   attributes :id, :name, :email
 
   node :links do |user|

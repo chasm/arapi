@@ -2,7 +2,10 @@ class UsersController < RestController
 
   protected
 
-  def object_params
-    params.require(:user).permit( :title, :body )
+  def configure_controller
+    config[:display] = [ :name, :email ]
+    config[:require] = [ :id ]
+    config[:permit]  = [ :name, :email ]
+    config[:include] = [ :articles, :comments, :jobs, :duties ]
   end
 end

@@ -1,6 +1,8 @@
 object false
 
-child @objects do
+# This creates an "articles": [] key-value pair with one or more article hashes
+# Adding the => :articles ensures that an empty array still displays
+child @articles => :articles do
   attributes :id, :title, :body
 
   node :tags do |article|
@@ -19,27 +21,11 @@ child @objects do
   end
 end
 
-child @comments do
-  attributes :id, :body
-
-  node :links do |comment|
-    {
-      user: comment.user.id,
-      comments: comment.comments.map {|c| c.id }
-    }
-  end
-
-  node :href do |comment|
-    comment_url(comment)
-  end
-end
-
+# :links provides a hash of URL templates to satisfy the hypermedia constraint
 node :links do
   {
     "articles.user" => users_url + "/{articles.user}",
-    "articles.comments" => comments_url + "/{articles.comments}",
-    "comments.user" => users_url + "/{comments.user}",
-    "comments.comments" => comments_url + "/{comments.comments}"
+    "articles.comments" => comments_url + "/{articles.comments}"
   }
 end
 

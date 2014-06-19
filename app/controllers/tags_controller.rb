@@ -2,7 +2,10 @@ class TagsController < RestController
 
   protected
 
-  def object_params
-    params.require(:tag).permit( :name )
+  def configure_controller
+    config[:display] = [ :name ]
+    config[:require] = [ :id ]
+    config[:permit]  = [ :name ]
+    config[:include] = [ :articles ]
   end
 end

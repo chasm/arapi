@@ -1,6 +1,6 @@
 object false
 
-child @objects do
+child @duties => :duties do
   attributes :id, :title
 
   node :links do |duty|

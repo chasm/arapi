@@ -4,4 +4,6 @@ class Comment < ActiveRecord::Base
   belongs_to :user
   belongs_to :comment
   has_many :comments, dependent: :destroy
+
+  validates :body, :user_id, :article_id, presence: true
 end
