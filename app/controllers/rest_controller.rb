@@ -43,7 +43,7 @@ class RestController < ApplicationController
           # If a create, save the item, returna 201 with a JSON representation
           new_item.save
           instance_variable_set( get_name, [ new_item ] )
-          render :index, status: :created
+          render :create, status: :created
         end
       rescue
         # If save or destroy fails, return a 500
