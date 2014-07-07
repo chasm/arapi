@@ -1,5 +1,9 @@
-class Duty < ActiveRecord::Base
-  default_scope -> { order('created_at ASC') }
+class Duty
+  include Mongoid::Document
+  include Mongoid::Timestamps
+
   has_many :jobs, dependent: :destroy
-  has_many :users, through: :jobs
+
+  field :id
+  field :title
 end

@@ -5,9 +5,9 @@ class RestController < ApplicationController
     qry = get_class.includes(get_includes)
 
     @objects = if params[:ids]
-      qry.where(id: params[:ids].split(",")).to_a
+      qry.find_by(id: params[:ids].split(",")).entries
     else
-      qry.all.to_a
+      qry.all.entries
     end
 
     head :not_found if @objects.empty?

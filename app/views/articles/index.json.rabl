@@ -1,15 +1,10 @@
 object false
 
-child @objects do
+child @articles do
   attributes :id, :title, :body
-
-  node :tags do |article|
-    article.tags.map {|t| t.name }
-  end
 
   node :links do |article|
     {
-      user: article.user.id,
       comments: article.comments.map {|c| c.id }
     }
   end
