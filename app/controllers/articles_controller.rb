@@ -1,4 +1,4 @@
-class ArticlesController
+class ArticlesController < ApplicationController
   before_action :get_article, only: [ :update, :destroy ]
 
   def index
