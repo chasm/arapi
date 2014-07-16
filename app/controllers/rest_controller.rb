@@ -3,6 +3,7 @@ class RestController < ApplicationController
 
   def index
     qry = get_class.includes(get_includes)
+    qry = qry.limit(params[:recent].to_i) if params[:recent].to_i != 0
 
     @objects = if params[:ids]
       qry.where(id: params[:ids].split(",")).to_a
@@ -20,7 +21,7 @@ class RestController < ApplicationController
 
     head :unprocessable_entity unless new_object.valid?
 
-    begin
+    # begin
       if old_object = get_class.find_by( id: params[:id] )
           old_object.destroy
           new_object.save
@@ -30,9 +31,9 @@ class RestController < ApplicationController
         @objects = [new_object]
         render :index, status: :created
       end
-    rescue
-      head :internal_server_error
-    end
+    # rescue
+    #   head :internal_server_error
+    # end
   end
 
   def update

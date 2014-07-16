@@ -1,10 +1,14 @@
 class ArticlesController < RestController
 
-  # def index
-  #   # super
-  #   #
-  #   # @comments =  @objects.map {|a| a.comments }.flatten.uniq
-  # end
+  def index
+    sql = %{
+      SELECT * FROM articles LEFT JOIN comments
+      ON articles.id = comments.article_id
+      ORDER BY articles.created_at ASC LIMIT 3 OFFSET 2;
+    }.squish
+
+    @articles = ActiveRecord::Base.connection.execute(sql).to_a
+  end
 
   protected
 

@@ -54,5 +54,13 @@ Arapi::Application.routes.draw do
       patch  ':id'  => 'users#update'
       delete ':id'  => 'users#destroy'
     end
+
+    scope :victims do
+      get    ''     => 'victims#index', as: 'victims'
+      get    ':ids' => 'victims#index', as: 'victim'
+      put    ':id'  => 'victims#create_or_replace'
+      patch  ':id'  => 'victims#update'
+      delete ':id'  => 'victims#destroy'
+    end
   end
 end

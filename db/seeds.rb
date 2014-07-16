@@ -61,7 +61,55 @@ articles = Article.create([
     tags: tags[0..1]
   },
   {
-    title: "The Other Article",
+    title: "The Second Article",
+    body: "This article has a really nice body.",
+    user: users[1],
+    tags: tags[1..2]
+  },
+  {
+    title: "The Third Article",
+    body: "This article has a nice body.",
+    user: users[0],
+    tags: tags[0..1]
+  },
+  {
+    title: "The Fourth Article",
+    body: "This article has a really nice body.",
+    user: users[1],
+    tags: tags[1..2]
+  },
+  {
+    title: "The Fifth Article",
+    body: "This article has a nice body.",
+    user: users[0],
+    tags: tags[0..1]
+  },
+  {
+    title: "The Sixth Article",
+    body: "This article has a really nice body.",
+    user: users[1],
+    tags: tags[1..2]
+  },
+  {
+    title: "The Seventh Article",
+    body: "This article has a nice body.",
+    user: users[0],
+    tags: tags[0..1]
+  },
+  {
+    title: "The Eighth Article",
+    body: "This article has a really nice body.",
+    user: users[1],
+    tags: tags[1..2]
+  },
+  {
+    title: "The Ninth Article",
+    body: "This article has a nice body.",
+    user: users[0],
+    tags: tags[0..1]
+  },
+  {
+    title: "The Tenth Article",
     body: "This article has a really nice body.",
     user: users[1],
     tags: tags[1..2]
